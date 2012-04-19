@@ -16,4 +16,6 @@ source .rvmrc > /dev/null
 gem list | grep bundler  || gem install bundler --version 1.0.21 --no-rdoc --no-ri
 bundle check || bundle install
 
-warble && echo -e "Run the following command to start the app on localhost:3000 \n==> java -jar aws-twitter-feed.jar"
+# warble && echo -e "Run the following command to start the app on localhost:3000 \n==> java -jar aws-twitter-feed.jar"
+
+bundle exec rake $@
