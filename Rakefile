@@ -24,7 +24,7 @@ task :package => :build do
     "-s dir -t rpm -a noarch",
     "-C build-output opt",
   ].join(" ")    
-  sh "bundle exec fpm #{fpm_opts}"
+  sh "bundle exec fpm #{fpm_options}"
   sh "rm -rf build-output"
 end
 
