@@ -17,6 +17,7 @@ task :package => :build do
   sh "mkdir -p build-output/opt/"
   sh "cp #{app_name}.jar build-output/opt/"
   fpm_options = [
+    "-n #{app_name}"
     "--post-install packaged-scripts/post-install.sh",
     "--pre-uninstall packaged-scripts/pre-uninstall.sh",
     "--description 'Simple demo application that scans a twitter feed for a particular hashtag. Built for AWS summit.'",
