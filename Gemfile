@@ -5,6 +5,6 @@ gem "trinidad"
 
 group :development do
   gem "warbler"
-  gem "fpm"
+  gem "fpm", '0.3.7'
   gem "rake"
 end

@@ -12,12 +12,17 @@ end
 desc "Build the app as an executable jar"
 task :build => ['jar:clean','jar'] 
 
+desc "Clean out the build artifacts"
+task :clean do
+  sh "rm -rf build-output"
+end
+
 desc "Package the app as a exectable jar within an RPM"
-task :package => :build do  
+task :package => [:clean, :build] do  
   sh "mkdir -p build-output/opt/"
   sh "cp #{app_name}.jar build-output/opt/"
   fpm_options = [
-    "-n #{app_name}"
+    "-n #{app_name}",
     "--post-install packaged-scripts/post-install.sh",
     "--pre-uninstall packaged-scripts/pre-uninstall.sh",
     "--description 'Simple demo application that scans a twitter feed for a particular hashtag. Built for AWS summit.'",
@@ -26,6 +31,5 @@ task :package => :build do
     "-C build-output opt",
   ].join(" ")    
   sh "bundle exec fpm #{fpm_options}"
-  sh "rm -rf build-output"
 end
 
