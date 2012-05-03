@@ -15,7 +15,7 @@ task :build => ['jar:clean','jar']
 desc "Package the app as a exectable jar within an RPM"
 task :package => :build do  
   sh "mkdir -p build-output/opt/"
-  sh "cp #{app_name}.jar} build-output/opt/"
+  sh "cp #{app_name}.jar build-output/opt/"
   fpm_options = [
     "--post-install packaged-scripts/post-install.sh",
     "--pre-uninstall packaged-scripts/pre-uninstall.sh",
