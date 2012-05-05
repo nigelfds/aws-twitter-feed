@@ -4,7 +4,8 @@
 set -e
 
 if [ ! -d "$HOME/.rvm" ]; then
-  bash -s stable < <(curl -k -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+  echo "installing rvm..."
+  curl -L get.rvm.io | bash -s stable
 fi
 
 # load RVM and project config
