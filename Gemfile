@@ -1,10 +1,10 @@
-source "http://rubygems.org"
+source :rubygems
 
-gem "rack"
-gem "trinidad"
+gem "sinatra"
 
 group :development do
-  gem "warbler"
+  gem "jruby-jars", "1.6.7"
+  gem "warbler", "1.3.4"
   gem "fpm", '0.3.7'
   gem "rake"
 end
