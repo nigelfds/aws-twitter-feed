@@ -2,7 +2,7 @@ source :rubygems
 
 gem "sinatra"
 gem "twitter"
-gem "jruby-openssl"
+gem "jruby-openssl", :platforms => :jruby
 
 group :development do
   gem "jruby-jars", "1.6.7"
