@@ -22,8 +22,8 @@ task :package => [:clean, :build] do
 
   sh "mkdir -p build-output"
 
-  tanuki_wrapper_url = "http://wrapper.tanukisoftware.com/download/3.5.14/wrapper-linux-x86-64-3.5.14.tar.gz"
-  wrapper_destination = "build-output/wrapper-linux-x86-64-3.5.14"
+  tanuki_wrapper_url = "http://wrapper.tanukisoftware.com/download/3.5.14/wrapper-linux-x86-32-3.5.14.tar.gz"
+  wrapper_destination = "build-output/wrapper-linux-x86-32-3.5.14"
   sh "test -e #{wrapper_destination}.tar.gz || wget -O #{wrapper_destination}.tar.gz #{tanuki_wrapper_url}"
   sh "tar -xvzf #{wrapper_destination}.tar.gz -C build-output"
 
