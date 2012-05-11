@@ -32,14 +32,15 @@ task :package => [:clean, :build] do
     :lib => "build-output/opt/aws-twitter-feed/lib",
     :conf => "build-output/opt/aws-twitter-feed/conf",
   }
-
   dirs.each do |key, path|
     sh "mkdir -p #{path}"
   end
-  sh "cp #{app_name}.war #{dirs[:lib]}"
-  sh "cp #{wrapper_destination}/bin/wrapper #{dirs[:bin]}"
-  sh "cp #{wrapper_destination}/src/bin/sh.script.in #{dirs[:bin]}/aws-twitter-feed"
 
+  sh "cp #{app_name}.war #{dirs[:lib]}"
+  sh "cp #{wrapper_destination}/bin/wrapper #{dirs[:bin]}/"
+  sh "chmod u+x #{dirs[:bin]}/wrapper"
+
+  sh "cp #{wrapper_destination}/src/bin/sh.script.in #{dirs[:bin]}/aws-twitter-feed"
   script = File.read "#{dirs[:bin]}/aws-twitter-feed"
   script.gsub!("@app.name@", "aws-twitter-feed")
   script.gsub!("@app.long.name@", "aws-twitter-feed")
