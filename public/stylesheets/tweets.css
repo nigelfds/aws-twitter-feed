@@ -1,0 +1,7 @@
+.tweets {
+}
+
+.tweets .tweet {
+  display: block;
+  margin: 10px;
+}
