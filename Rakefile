@@ -48,7 +48,7 @@ task :package => [:clean, :build] do
 
   sh "cp #{wrapper_destination}/lib/libwrapper.so #{dirs[:lib]}/"
   sh "cp #{wrapper_destination}/lib/wrapper.jar #{dirs[:lib]}/"
-  sh "cp conf/wrapper.conf #{dirs[:conf]}/"
+  sh "cp config/wrapper.conf #{dirs[:conf]}/"
 
   fpm_options = [
     "-n #{app_name}",
