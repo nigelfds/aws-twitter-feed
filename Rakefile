@@ -14,13 +14,12 @@ task :build => ['war:clean','war']
 
 desc "Clean out the build artifacts"
 task :clean do
-  sh "rm -rf build-output/opt"
-  sh "rm aws-twitter-feed*.rpm"
+  rm_rf "build-output/opt"
+  rm_rf "aws-twitter-feed*.rpm"
 end
 
 desc "Package the app as a exectable jar within an RPM"
 task :package => [:clean, :build] do
-
   sh "mkdir -p build-output"
 
   tanuki_wrapper_url = "http://wrapper.tanukisoftware.com/download/3.5.14/wrapper-linux-x86-32-3.5.14.tar.gz"
