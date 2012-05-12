@@ -50,13 +50,13 @@ task :package => [:clean, :build] do
   sh "cp #{wrapper_destination}/lib/libwrapper.so #{dirs[:lib]}/"
   sh "cp #{wrapper_destination}/lib/wrapper.jar #{dirs[:lib]}/"
   sh "cp config/wrapper.conf #{dirs[:conf]}/"
-
+  version = "0.1.#{ENV['GO_PIPELINE_COUNTER'] || 0}"
   fpm_options = [
     "-n #{app_name}",
     "--post-install packaged-scripts/post-install.sh",
     "--pre-uninstall packaged-scripts/pre-uninstall.sh",
     "--description 'Simple demo application that scans a twitter feed for a particular hashtag. Built for AWS summit.'",
-    "-v 0.0.1",
+    "-v #{version}",
     "-s dir -t rpm -a noarch",
     "-C build-output opt",
   ].join(" ")    
