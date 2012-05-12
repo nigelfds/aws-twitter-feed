@@ -15,6 +15,7 @@ task :build => ['war:clean','war']
 desc "Clean out the build artifacts"
 task :clean do
   sh "rm -rf build-output/opt"
+  sh "rm aws-twitter-feed*.rpm"
 end
 
 desc "Package the app as a exectable jar within an RPM"
