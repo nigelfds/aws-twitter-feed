@@ -11,7 +11,15 @@ task :run do |t|
 end
 
 desc "Run application specs"
-RSpec::Core::RakeTask.new(:spec)
+RSpec::Core::RakeTask.new(:spec) do |t|
+  mapper       = { "junit" => "JUnitFormatter",
+                   "tap"   => "TapFormatter"
+                 }
+  format       = mapper[ENV["format"]] || "progress"
+  formatters   = "rspec-extra-formatters"
+  t.rspec_opts = ["-r \"#{formatters}\"", "-f \"#{format}\""]
+  t.pattern    = "spec/**/*_spec.rb"
+end
 
 desc "Build the app as an executable jar"
 task :build => ['war:clean','war']
