@@ -1,13 +1,19 @@
 require 'warbler'
 require 'fpm'
+require 'rspec/core/rake_task'
 
 Warbler::Task.new
 app_name="aws-twitter-feed"
 
 desc "Build and then start the app on localhost"
-task :run do |t|  
+task :run do |t|
   FileTest.exist?("#{app_name}.war") ? sh("java -jar aws-twitter-feed.war") : puts("No war file found. Run rake build first.")
-end 
+end
+
+desc "Run application specs"
+RSpec::Core::RakeTask.new do |t|
+  t.pattern = "./spec/**/*_spec.rb"
+end
 
 desc "Build the app as an executable jar"
 task :build => ['war:clean','war']
@@ -59,7 +65,7 @@ task :package => [:clean, :build] do
     "-v #{version}",
     "-s dir -t rpm -a noarch",
     "-C build-output opt",
-  ].join(" ")    
+  ].join(" ")
   sh "bundle exec fpm #{fpm_options}"
 end
 
