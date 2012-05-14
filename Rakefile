@@ -11,9 +11,7 @@ task :run do |t|
 end
 
 desc "Run application specs"
-RSpec::Core::RakeTask.new do |t|
-  t.pattern = "./spec/**/*_spec.rb"
-end
+RSpec::Core::RakeTask.new(:spec)
 
 desc "Build the app as an executable jar"
 task :build => ['war:clean','war']
